@@ -17,12 +17,19 @@ gem "puma", ">= 5.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Use 'sassc-rails' for stylesheets
+gem "sassc-rails"
+
 # Use bootstrap for styling
-gem 'bootstrap', '~> 5.1.3'
+gem 'bootstrap'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# Use dotenv to load environment variables from .env into ENV in development
+gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'rspec-rails', '~> 5.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -64,4 +71,5 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'webmock', '~> 3.13'
 end
