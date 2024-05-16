@@ -1,24 +1,32 @@
-# README
+# Dog Breed Finder App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Dog Breed Finder App is a simple form-based application that allows users to fetch and display images of dog breeds using the [Dog CEO API](https://dog.ceo/dog-api/). Users can select a breed from a dropdown menu, submit the form, and view a random image of the selected breed.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- Dropdown menu to select dog breeds.
+- Asynchronous form submission.
+- Displays a random image of the selected breed.
+- JSON-based API responses.
 
-* System dependencies
+## Prerequisites
 
-* Configuration
+- Ruby
+- Rails
+- Bundler
+- Rspec
 
-* Database creation
+## Setup
 
-* Database initialization
+### Clone the Repository
 
-* How to run the test suite
+```sh
+git clone https://github.com/your-username/dog-breeds-rails-app.git
+cd dog-breeds-rails-app
 
-* Services (job queues, cache servers, search engines, etc.)
+```
 
-* Deployment instructions
-
-* ...
+App is deployed on heroku
+```
+https://dog-breed-image-app-00eed6e7ddcc.herokuapp.com/
+```
