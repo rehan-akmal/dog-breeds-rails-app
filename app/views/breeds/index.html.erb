@@ -1,2 +1,62 @@
-<h1>Breeds#index</h1>
-<p>Find me in app/views/breeds/index.html.erb</p>
+<div class="text-center container mt-5">
+  <h3 class="mb-4">Dog Breed Image Fetcher</h3>
+  <p>Select the breed from the dropdown below to fetch a random image of the breed.</p>
+  <div>
+    <form id="breed-form" action="<%= fetch_breed_image_path %>" method="post">
+      <div class="dropdown-container mb-3">
+        <select name="breed" id="breed" class="form-control" required>
+          <option value="">Select a breed</option>
+          <% @breeds.each do |breed| %>
+            <option value="<%= breed %>"><%= breed.capitalize %></option>
+          <% end %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        Submit
+        <span id="loader" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+      </button>
+    </form>
+  </div>
+  <div class="text-center">
+    <div id="breed-result" class="mt-4"></div>
+  </div>
+</div>
+
+<%= csrf_meta_tags %>
+
+
+<script>
+  $(document).ready(function() {
+    $('#breed-form').on('submit', function(e) {
+      e.preventDefault();
+      var form = $(this);
+      var submitButton = form.find('button[type="submit"]');
+      var loader = $('#loader');
+
+      // Show the loader
+      loader.show();
+      submitButton.prop('disabled', true);
+
+      $.ajax({
+        url: form.attr('action'),
+        method: form.attr('method'),
+        data: form.serialize(),
+        success: function(response) {
+          if (response.image_url) {
+            $('#breed-result').html('</h3><img src="' + response.image_url + '" alt="' + response.breed + '" class="img-fluid img-thumbnail">');
+          } else {
+            $('#breed-result').html('<p class="text-danger">' + response.error + '</p>');
+          }
+        },
+        error: function(xhr) {
+          $('#breed-result').html('<p class="text-danger">Error: ' + xhr.responseJSON.error + '</p>');
+        },
+        complete: function() {
+          // Hide the loader
+          loader.hide();
+          submitButton.prop('disabled', false);
+        }
+      });
+    });
+  });
+</script>
