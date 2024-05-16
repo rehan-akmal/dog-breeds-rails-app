@@ -13,6 +13,8 @@ class DogBreedService
     else
       []
     end
+  rescue StandardError
+    []
   end
 
   def self.fetch_breed_image(breed)
@@ -25,5 +27,7 @@ class DogBreedService
     else
       nil
     end
+  rescue StandardError
+    nil
   end
 end
